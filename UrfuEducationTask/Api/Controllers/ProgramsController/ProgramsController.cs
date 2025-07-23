@@ -56,24 +56,6 @@ public class ProgramsController : ControllerBase
             response);
     }
 
-    // PUT api/programs/{id}
-    [HttpPut("{id:guid}")]
-    public async Task<IActionResult> Update(Guid id, [FromBody] ProgramUpdateRequest req)
-    {
-        if (id != req.Uuid)
-            return BadRequest(new { Message = "ID в URL и теле не совпадают." });
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-
-        var cmd = _mapper.Map<UpdateProgramCommand>(req);
-        var result = await _svc.UpdateAsync(cmd);
-
-        if (!result.Success)
-            return BadRequest(new { Message = result.Error });
-
-        return Ok(_mapper.Map<ProgramResponse>(result.Data!));
-    }
-
     // DELETE api/programs/{id}
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> Delete(Guid id)

@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using Dal.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Dal;
@@ -17,19 +18,38 @@ public class UrfuDbContext : DbContext
     {
     }
 
-    protected override void OnModelCreating(ModelBuilder mb)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        base.OnModelCreating(mb);
+        base.OnModelCreating(modelBuilder);
 
-        // Конвертер List<Guid> ↔ JSON
+        // 1) Конвертер List<Guid> <-> JSON
         var jsonConverter = new ValueConverter<List<Guid>, string>(
             v => JsonSerializer.Serialize(v, (JsonSerializerOptions?)null),
-            v => JsonSerializer.Deserialize<List<Guid>>(v, (JsonSerializerOptions?)null)!
+            v => JsonSerializer.Deserialize<List<Guid>>(v, (JsonSerializerOptions?)null) ?? new List<Guid>());
+
+        // 2) Компаратор списков
+        var listComparer = new ValueComparer<List<Guid>>(
+            (c1, c2) => c1.SequenceEqual(c2),
+            c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
+            c => c.ToList()
         );
 
-        mb.Entity<Institute>()
-            .Property(i => i.Programs)
-            .HasConversion(jsonConverter)
-            .HasColumnType("jsonb");
+        // 3) Настраиваем поле Programs в Institute
+        var instProp = modelBuilder.Entity<Institute>()
+            .Property(i => i.Programs);
+
+        instProp.HasConversion(jsonConverter);
+        instProp.HasColumnType("jsonb");
+
+        // поскольку HasValueComparer недоступен, делаем так:
+        instProp.Metadata.SetValueComparer(listComparer);
+
+        // 4) То же для ModuleIds в ProgramModel
+        var progProp = modelBuilder.Entity<ProgramModel>()
+            .Property(p => p.ModuleIds);
+
+        progProp.HasConversion(jsonConverter);
+        progProp.HasColumnType("jsonb");
+        progProp.Metadata.SetValueComparer(listComparer);
     }
 }

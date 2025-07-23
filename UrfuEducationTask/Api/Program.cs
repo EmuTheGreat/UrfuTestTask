@@ -14,17 +14,29 @@ using Microsoft.EntityFrameworkCore; // MappingProfile
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 1) EF Core + Postgres
 builder.Services.AddDbContext<UrfuDbContext>(opts =>
     opts.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 
-// 2) Сервисы бизнес-логики
+// 2) Repositories (DAL)
+builder.Services.AddScoped<IProgramRepository, ProgramRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IInstituteRepository, InstituteRepository>();
+builder.Services.AddScoped<IHeadRepository, HeadRepository>();
+builder.Services.AddScoped<IModuleRepository, ModuleRepository>();
+
+// 3) Business services (Logic)
 builder.Services.AddScoped<IProgramService, ProgramService>();
-//builder.Services.AddScoped<IModuleService, ModuleService>();
 builder.Services.AddScoped<IAccountManager, AccountManager>();
+builder.Services.AddScoped<IModuleService, ModuleService>();
+builder.Services.AddScoped<IInstituteService, InstituteService>();
+builder.Services.AddScoped<IHeadService, HeadService>();
+
+// 4) Utilities
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<IJwtProvider, JwtProvider>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+builder.Services.AddAuthorization();
+
 
 // 3) AutoMapper: сканируем профиль из Logic
 builder.Services.AddAutoMapper(typeof(ApiMappingProfile).Assembly);

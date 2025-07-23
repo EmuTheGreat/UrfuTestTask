@@ -76,7 +76,7 @@ namespace Logic.Managers
             return OperationResult<ProgramLogicModel>.Ok(dto);
         }
 
-        public async Task<OperationResult<ProgramLogicModel>> UpdateAsync(UpdateProgramCommand cmd)
+        /*public async Task<OperationResult<ProgramLogicModel>> UpdateAsync(UpdateProgramCommand cmd)
         {
             var model = await _programRepo.GetByIdAsync(cmd.Uuid);
             if (model == null)
@@ -93,7 +93,7 @@ namespace Logic.Managers
             dto.InstituteTitle = inst?.Title ?? "";
             dto.HeadFullName   = head?.FullName ?? "";
             return OperationResult<ProgramLogicModel>.Ok(dto);
-        }
+        }*/
 
         public async Task<OperationResult> DeleteAsync(Guid id)
         {

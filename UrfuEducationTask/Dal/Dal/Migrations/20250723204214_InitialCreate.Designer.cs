@@ -3,17 +3,20 @@ using System;
 using Dal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace Dal.Migrations
+namespace Dal.Dal.Migrations
 {
     [DbContext(typeof(UrfuDbContext))]
-    partial class UrfuDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250723204214_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,6 +47,10 @@ namespace Dal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("Programs")
+                        .IsRequired()
+                        .HasColumnType("jsonb");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -59,12 +66,6 @@ namespace Dal.Migrations
                     b.Property<Guid>("Uuid")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
-
-                    b.Property<int>("Level")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Standard")
-                        .HasColumnType("integer");
 
                     b.Property<string>("Title")
                         .IsRequired()
@@ -102,6 +103,10 @@ namespace Dal.Migrations
                     b.Property<int>("Level")
                         .HasColumnType("integer");
 
+                    b.Property<string>("ModuleIds")
+                        .IsRequired()
+                        .HasColumnType("jsonb");
+
                     b.Property<int>("Standard")
                         .HasColumnType("integer");
 
@@ -118,8 +123,6 @@ namespace Dal.Migrations
                     b.HasKey("Uuid");
 
                     b.HasIndex("HeadId");
-
-                    b.HasIndex("InstituteId");
 
                     b.ToTable("Programs");
                 });
@@ -143,61 +146,16 @@ namespace Dal.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ModuleModelProgramModel", b =>
-                {
-                    b.Property<Guid>("ModulesUuid")
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid>("ProgramsUuid")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("ModulesUuid", "ProgramsUuid");
-
-                    b.HasIndex("ProgramsUuid");
-
-                    b.ToTable("ProgramModules", (string)null);
-                });
-
             modelBuilder.Entity("Dal.Models.ProgramModel", b =>
                 {
-                    b.HasOne("Dal.Models.Head", "Head")
+                    b.HasOne("Dal.Models.Head", null)
                         .WithMany("Programs")
                         .HasForeignKey("HeadId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Dal.Models.Institute", "Institute")
-                        .WithMany("Programs")
-                        .HasForeignKey("InstituteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Head");
-
-                    b.Navigation("Institute");
-                });
-
-            modelBuilder.Entity("ModuleModelProgramModel", b =>
-                {
-                    b.HasOne("Dal.Models.ModuleModel", null)
-                        .WithMany()
-                        .HasForeignKey("ModulesUuid")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Dal.Models.ProgramModel", null)
-                        .WithMany()
-                        .HasForeignKey("ProgramsUuid")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
             modelBuilder.Entity("Dal.Models.Head", b =>
-                {
-                    b.Navigation("Programs");
-                });
-
-            modelBuilder.Entity("Dal.Models.Institute", b =>
                 {
                     b.Navigation("Programs");
                 });

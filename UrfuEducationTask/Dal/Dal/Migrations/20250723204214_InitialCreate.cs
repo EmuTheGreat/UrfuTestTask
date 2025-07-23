@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Dal.Migrations
+namespace Dal.Dal.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -28,7 +28,8 @@ namespace Dal.Migrations
                 columns: table => new
                 {
                     Uuid = table.Column<Guid>(type: "uuid", nullable: false),
-                    Title = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false)
+                    Title = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
+                    Programs = table.Column<string>(type: "jsonb", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -41,9 +42,7 @@ namespace Dal.Migrations
                 {
                     Uuid = table.Column<Guid>(type: "uuid", nullable: false),
                     Title = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Type = table.Column<int>(type: "integer", nullable: false),
-                    Level = table.Column<int>(type: "integer", nullable: false),
-                    Standard = table.Column<int>(type: "integer", nullable: false)
+                    Type = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,7 +74,8 @@ namespace Dal.Migrations
                     Standard = table.Column<int>(type: "integer", nullable: false),
                     InstituteId = table.Column<Guid>(type: "uuid", nullable: false),
                     HeadId = table.Column<Guid>(type: "uuid", nullable: false),
-                    AccreditationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    AccreditationTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    ModuleIds = table.Column<string>(type: "jsonb", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -86,62 +86,19 @@ namespace Dal.Migrations
                         principalTable: "Heads",
                         principalColumn: "Uuid",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Programs_Institutes_InstituteId",
-                        column: x => x.InstituteId,
-                        principalTable: "Institutes",
-                        principalColumn: "Uuid",
-                        onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "ProgramModules",
-                columns: table => new
-                {
-                    ModulesUuid = table.Column<Guid>(type: "uuid", nullable: false),
-                    ProgramsUuid = table.Column<Guid>(type: "uuid", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProgramModules", x => new { x.ModulesUuid, x.ProgramsUuid });
-                    table.ForeignKey(
-                        name: "FK_ProgramModules_Modules_ModulesUuid",
-                        column: x => x.ModulesUuid,
-                        principalTable: "Modules",
-                        principalColumn: "Uuid",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProgramModules_Programs_ProgramsUuid",
-                        column: x => x.ProgramsUuid,
-                        principalTable: "Programs",
-                        principalColumn: "Uuid",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProgramModules_ProgramsUuid",
-                table: "ProgramModules",
-                column: "ProgramsUuid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Programs_HeadId",
                 table: "Programs",
                 column: "HeadId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Programs_InstituteId",
-                table: "Programs",
-                column: "InstituteId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ProgramModules");
-
-            migrationBuilder.DropTable(
-                name: "Users");
+                name: "Institutes");
 
             migrationBuilder.DropTable(
                 name: "Modules");
@@ -150,10 +107,10 @@ namespace Dal.Migrations
                 name: "Programs");
 
             migrationBuilder.DropTable(
-                name: "Heads");
+                name: "Users");
 
             migrationBuilder.DropTable(
-                name: "Institutes");
+                name: "Heads");
         }
     }
 }

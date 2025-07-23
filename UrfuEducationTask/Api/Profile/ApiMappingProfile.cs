@@ -20,7 +20,12 @@ namespace Api.Mappings
             CreateMap<ProgramCreateRequest, CreateProgramCommand>();
             CreateMap<ProgramUpdateRequest, UpdateProgramCommand>();
 
+            CreateMap<CreateProgramCommand, ProgramModel>();
+            
             CreateMap<ProgramLogicModel, ProgramResponse>();
+            
+            
+            
         }
     }
 }

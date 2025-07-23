@@ -1,0 +1,39 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  api:
+    build:
+      context: "E:\\repositories\\UrfuTestTask\\UrfuEducationTask"
+      dockerfile: "Api/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/Api.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "api:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\thegr\\.nuget\\packages:/home/app/.nuget/packages"
+    - "E:\\repositories\\UrfuTestTask\\UrfuEducationTask\\Api:/app:rw"
+    - "E:\\repositories\\UrfuTestTask\\UrfuEducationTask:/src:rw"
+    working_dir: "/app"
+  webapp:
+    build:
+      context: "E:\\repositories\\UrfuTestTask\\UrfuEducationTask"
+      dockerfile: "WebApp/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/WebApp.dll"
+    environment:
+      ASPNETCORE_STATICWEBASSETS: "/app/bin/Debug/net8.0/WebApp.staticwebassets.runtime.CT.json"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "webapp:dev"
+    ports: []
+    volumes:
+    - "C:\\Users\\thegr\\.nuget\\packages:/home/app/.nuget/packages"
+    - "E:\\repositories\\UrfuTestTask\\UrfuEducationTask\\WebApp:/app:rw"
+    - "E:\\repositories\\UrfuTestTask\\UrfuEducationTask:/src:rw"
+    working_dir: "/app"

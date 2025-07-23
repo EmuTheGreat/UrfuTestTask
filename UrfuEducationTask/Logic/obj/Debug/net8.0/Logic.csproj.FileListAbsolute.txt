@@ -1,0 +1,16 @@
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\bin\Debug\net8.0\Logic.deps.json
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\bin\Debug\net8.0\Logic.dll
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\bin\Debug\net8.0\Logic.pdb
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\bin\Debug\net8.0\Dal.dll
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\bin\Debug\net8.0\Dal.pdb
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\obj\Debug\net8.0\Logic.csproj.AssemblyReference.cache
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\obj\Debug\net8.0\Logic.GeneratedMSBuildEditorConfig.editorconfig
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\obj\Debug\net8.0\Logic.AssemblyInfoInputs.cache
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\obj\Debug\net8.0\Logic.AssemblyInfo.cs
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\obj\Debug\net8.0\Logic.csproj.CoreCompileInputs.cache
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\obj\Debug\net8.0\Logic.sourcelink.json
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\obj\Debug\net8.0\Logic.csproj.Up2Date
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\obj\Debug\net8.0\Logic.dll
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\obj\Debug\net8.0\refint\Logic.dll
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\obj\Debug\net8.0\Logic.pdb
+E:\repositories\UrfuTestTask\UrfuEducationTask\Logic\obj\Debug\net8.0\ref\Logic.dll

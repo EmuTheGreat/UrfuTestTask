@@ -1,0 +1,15 @@
+E:\repositories\UrfuTestTask\UrfuEducationTask\Dal\bin\Debug\net8.0\Dal.deps.json
+E:\repositories\UrfuTestTask\UrfuEducationTask\Dal\bin\Debug\net8.0\Dal.dll
+E:\repositories\UrfuTestTask\UrfuEducationTask\Dal\bin\Debug\net8.0\Dal.pdb
+E:\repositories\UrfuTestTask\UrfuEducationTask\Dal\obj\Debug\net8.0\Dal.csproj.AssemblyReference.cache
+E:\repositories\UrfuTestTask\UrfuEducationTask\Dal\obj\Debug\net8.0\Dal.GeneratedMSBuildEditorConfig.editorconfig
+E:\repositories\UrfuTestTask\UrfuEducationTask\Dal\obj\Debug\net8.0\Dal.AssemblyInfoInputs.cache
+E:\repositories\UrfuTestTask\UrfuEducationTask\Dal\obj\Debug\net8.0\Dal.AssemblyInfo.cs
+E:\repositories\UrfuTestTask\UrfuEducationTask\Dal\obj\Debug\net8.0\Dal.csproj.CoreCompileInputs.cache
+E:\repositories\UrfuTestTask\UrfuEducationTask\Dal\obj\Debug\net8.0\Dal.sourcelink.json
+E:\repositories\UrfuTestTask\UrfuEducationTask\Dal\obj\Debug\net8.0\Dal.dll
+E:\repositories\UrfuTestTask\UrfuEducationTask\Dal\obj\Debug\net8.0\refint\Dal.dll
+E:\repositories\UrfuTestTask\UrfuEducationTask\Dal\obj\Debug\net8.0\Dal.pdb
+E:\repositories\UrfuTestTask\UrfuEducationTask\Dal\obj\Debug\net8.0\ref\Dal.dll
+E:\repositories\UrfuTestTask\UrfuEducationTask\Dal\bin\Debug\net8.0\Dal.runtimeconfig.json
+E:\repositories\UrfuTestTask\UrfuEducationTask\Dal\obj\Debug\net8.0\Dal.genruntimeconfig.cache

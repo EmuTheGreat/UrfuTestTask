@@ -7,7 +7,7 @@
       POSTGRES_PASSWORD: 8800
       POSTGRES_DB: urfu_db
     ports:
-      - "5433:5433"
+      - "5434:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
 
@@ -20,7 +20,7 @@
       - postgres
     environment:
       # Подключаемся к postgres по имени сервиса
-      ConnectionStrings__Default: "Host=postgres;Port=5433;Database=urfu_db;Username=postgres;Password=8800"
+      ConnectionStrings__Default: "Host=postgres;Port=5432;Database=urfu_db;Username=postgres;Password=8800"
       ASPNETCORE_ENVIRONMENT: Development
     ports:
       - "5000:8080"   # HTTP-порт API

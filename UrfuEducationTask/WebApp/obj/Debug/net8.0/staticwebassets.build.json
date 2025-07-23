@@ -1,11 +1,23 @@
 {
   "Version": 1,
-  "Hash": "XAVeDIblRmibjS1EyCGMlXSkFMwvPXv/kU4SXwBOLy8=",
+  "Hash": "0Ln1o/KwELULpD6IaI0rbPeGcGAUS0jgdiD4HnSj2gU=",
   "Source": "WebApp",
   "BasePath": "_content/WebApp",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "E:\\repositories\\UrfuTestTask\\UrfuEducationTask\\Api\\Api.csproj",
+      "Version": 2,
+      "Source": "Api",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
   "DiscoveryPatterns": [
     {
       "Name": "WebApp\\wwwroot",

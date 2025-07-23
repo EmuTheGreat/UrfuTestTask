@@ -27,8 +27,7 @@ builder.Services.AddScoped<IJwtProvider, JwtProvider>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // 3) AutoMapper: сканируем профиль из Logic
-builder.Services.AddAutoMapper(typeof(ApiMappingProfile).Assembly,
-    typeof(MappingProfile     ).Assembly);
+builder.Services.AddAutoMapper(typeof(ApiMappingProfile).Assembly);
 
 builder.Services.AddApiAuthentication("secretKeySecretKeySecretKey123456789");
 

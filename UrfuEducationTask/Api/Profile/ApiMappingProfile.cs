@@ -1,6 +1,9 @@
-﻿using Api.Controllers.AccountApiController.Request;
+﻿using Api.Controllers.AccountApiController.Dto.Request;
+using Api.Controllers.ProgramsController.Dto.Request;
+using Api.Controllers.ProgramsController.Dto.Response;
 using Dal.Models;
 using Logic.Model;
+using Logic.Model.Command;
 
 namespace Api.Mappings
 {
@@ -13,9 +16,11 @@ namespace Api.Mappings
             CreateMap<LoginRequest, UserLogicModel>();
             CreateMap<UserLogicModel, UserModel>();
             CreateMap<UserModel, UserLogicModel>();
+            
+            CreateMap<ProgramCreateRequest, CreateProgramCommand>();
+            CreateMap<ProgramUpdateRequest, UpdateProgramCommand>();
 
-            // LogicModel → Response
-            //CreateMap<UserLogicModel, UserResponse>();
+            CreateMap<ProgramLogicModel, ProgramResponse>();
         }
     }
 }

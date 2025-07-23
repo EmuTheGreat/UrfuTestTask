@@ -27,9 +27,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\AccountApiController\Response\" />
-      <Folder Include="Controllers\ProgramsController\Request\" />
-      <Folder Include="Controllers\ProgramsController\Response\" />
+      <Folder Include="Controllers\AccountApiController\Dto\Response\" />
     </ItemGroup>
 
     <ItemGroup>

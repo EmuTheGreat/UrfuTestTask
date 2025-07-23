@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Api.Attributes;
 
-namespace Api.Controllers.AccountApiController.Request;
+namespace Api.Controllers.AccountApiController.Dto.Request;
 
 public record RegisterRequest()
 {

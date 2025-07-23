@@ -1,6 +1,6 @@
 ﻿namespace Logic.Model;
 
-public record UserLogicModel
+public class UserLogicModel
 {
     public string Phone { get; set; }
     public string Password { get; set; }

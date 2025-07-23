@@ -9,7 +9,6 @@ public class Institute
 
     [Required, MaxLength(200)]
     public string Title { get; set; } = null!;
-
-    // один институт — много программ
-    public ICollection<ProgramModel> Programs { get; set; } = new List<ProgramModel>();
+    
+    public List<Guid> Programs { get; set; } = new();
 }

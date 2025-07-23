@@ -1,5 +1,5 @@
 ﻿using System.Security.Claims;
-using Api.Controllers.AccountApiController.Request;
+using Api.Controllers.AccountApiController.Dto.Request;
 using AutoMapper;
 using Logic.Infrastructure.Results;
 using Logic.Managers.Interfaces;

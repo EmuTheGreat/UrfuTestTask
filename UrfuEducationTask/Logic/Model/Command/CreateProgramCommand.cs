@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Reflection;
 using Dal.Enums;
 
-namespace Dal.Models;
+namespace Logic.Model.Command;
 
-public class ProgramModel
+/// <summary>
+/// Команда для создания новой образовательной программы,
+/// включая сразу список связанных модулей
+/// </summary>
+public class CreateProgramCommand
 {
-    [Key]
-    public Guid Uuid { get; set; }
-
     [Required, MaxLength(200)]
     public string Title { get; set; } = null!;
 
@@ -32,6 +32,10 @@ public class ProgramModel
 
     [Required]
     public DateTime AccreditationTime { get; set; }
-    
+
+    /// <summary>
+    /// Если нужно сразу привязать модули к программе,
+    /// можно передать список их UUID
+    /// </summary>
     public List<Guid> ModuleIds { get; set; } = new();
 }

@@ -17,5 +17,13 @@ namespace Dal.Repositories
 
         public Task<Head?> GetByIdAsync(Guid uuid) =>
             _db.Heads.FindAsync(uuid).AsTask();
+        
+        public async Task AddAsync(Head head)
+        {
+            await _db.Heads.AddAsync(head);
+        }
+
+        public Task SaveChangesAsync() =>
+            _db.SaveChangesAsync();
     }
 }

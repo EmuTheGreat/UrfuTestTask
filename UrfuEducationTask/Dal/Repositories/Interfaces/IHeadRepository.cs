@@ -9,5 +9,7 @@ namespace Dal.Repositories.Interfaces
     {
         Task<List<Head>> GetAllAsync();
         Task<Head?> GetByIdAsync(Guid uuid);
+        Task AddAsync(Head head);
+        Task SaveChangesAsync();
     }
 }

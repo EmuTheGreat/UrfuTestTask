@@ -24,14 +24,21 @@ public class ProgramModel
     [Required]
     public EducationStandard Standard { get; set; }
 
+    // FK на институт
     [Required]
     public Guid InstituteId { get; set; }
 
+    public Institute Institute { get; set; } = null!;
+
+    // FK на заведующего
     [Required]
     public Guid HeadId { get; set; }
 
+    public Head Head { get; set; } = null!;
+
     [Required]
     public DateTime AccreditationTime { get; set; }
-    
-    public List<Guid> ModuleIds { get; set; } = new();
+
+    // Навигационное свойство на модули
+    public ICollection<ModuleModel> Modules { get; set; } = new List<ModuleModel>();
 }

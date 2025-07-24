@@ -9,5 +9,7 @@ namespace Dal.Repositories.Interfaces
     {
         Task<List<Institute>> GetAllAsync();
         Task<Institute?> GetByIdAsync(Guid uuid);
+        public Task AddAsync(Institute institute);
+        public Task SaveChangesAsync();
     }
 }

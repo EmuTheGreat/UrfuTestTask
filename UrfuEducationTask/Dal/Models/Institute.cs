@@ -10,5 +10,5 @@ public class Institute
     [Required, MaxLength(200)]
     public string Title { get; set; } = null!;
     
-    public List<Guid> Programs { get; set; } = new();
+    public ICollection<ProgramModel> Programs { get; set; } = new List<ProgramModel>();
 }

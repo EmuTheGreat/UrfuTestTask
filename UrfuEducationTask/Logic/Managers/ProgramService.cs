@@ -106,7 +106,7 @@ namespace Logic.Managers
             return OperationResult.Ok();
         }
 
-        public async Task<IEnumerable<ProgramLogicModel>> GetModulesByProgramIdAsync(Guid programId)
+        /*public async Task<IEnumerable<ProgramLogicModel>> GetModulesByProgramIdAsync(Guid programId)
         {
             var mods = await _programRepo.GetModulesByProgramIdAsync(programId);
             return _mapper.Map<IEnumerable<ProgramLogicModel>>(mods);
@@ -124,6 +124,6 @@ namespace Logic.Managers
             await _programRepo.RemoveModuleAsync(programId, moduleId);
             await _programRepo.SaveChangesAsync();
             return OperationResult.Ok();
-        }
+        }*/
     }
 }

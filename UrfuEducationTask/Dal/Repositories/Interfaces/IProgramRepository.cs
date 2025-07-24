@@ -10,10 +10,9 @@ public interface IProgramRepository
     Task UpdateAsync(ProgramModel program);
     Task DeleteAsync(ProgramModel program);
     
-    
     // методы для работы со связанными модулями
-    Task<List<ModuleModel>> GetModulesByProgramIdAsync(Guid programId);
+    /*Task<List<ModuleModel>> GetModulesByProgramIdAsync(Guid programId);
     Task AddModuleAsync(Guid programId, Guid moduleId);
-    Task RemoveModuleAsync(Guid programId, Guid moduleId);
+    Task RemoveModuleAsync(Guid programId, Guid moduleId);*/
     Task SaveChangesAsync();
 }

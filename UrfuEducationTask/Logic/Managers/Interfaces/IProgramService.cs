@@ -19,8 +19,8 @@ namespace Logic.Managers.Interfaces
         //Task<OperationResult<ProgramLogicModel>> UpdateAsync(UpdateProgramCommand command);
         Task<OperationResult> DeleteAsync(Guid id);
 
-        Task<IEnumerable<ProgramLogicModel>> GetModulesByProgramIdAsync(Guid programId);
+        /*Task<IEnumerable<ProgramLogicModel>> GetModulesByProgramIdAsync(Guid programId);
         Task<OperationResult> AddModuleToProgramAsync(Guid programId, Guid moduleId);
-        Task<OperationResult> RemoveModuleFromProgramAsync(Guid programId, Guid moduleId);
+        Task<OperationResult> RemoveModuleFromProgramAsync(Guid programId, Guid moduleId);*/
     }
 }

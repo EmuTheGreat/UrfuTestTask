@@ -13,4 +13,10 @@ public class ModuleModel
 
     [Required]
     public ModuleType Type { get; set; }
+
+    // FK на программу
+    [Required]
+    public Guid ProgramId { get; set; }
+
+    public ProgramModel Program { get; set; } = null!;
 }

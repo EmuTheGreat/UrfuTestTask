@@ -8,13 +8,14 @@ namespace Dal;
 
 public class UrfuDbContext : DbContext
 {
+    public DbSet<Head> Heads { get; set; }
+    public DbSet<Institute> Institutes { get; set; }
     public DbSet<ProgramModel> Programs { get; set; }
     public DbSet<ModuleModel> Modules { get; set; }
-    public DbSet<Institute> Institutes { get; set; }
-    public DbSet<Head> Heads { get; set; }
-    public DbSet<UserModel> Users { get; set; }
+    public DbSet<UserModel> Users { get; set; }  // если есть модель UserModel
 
-    public UrfuDbContext(DbContextOptions<UrfuDbContext> opts) : base(opts)
+    public UrfuDbContext(DbContextOptions<UrfuDbContext> options)
+        : base(options)
     {
     }
 
@@ -22,34 +23,22 @@ public class UrfuDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // 1) Конвертер List<Guid> <-> JSON
-        var jsonConverter = new ValueConverter<List<Guid>, string>(
-            v => JsonSerializer.Serialize(v, (JsonSerializerOptions?)null),
-            v => JsonSerializer.Deserialize<List<Guid>>(v, (JsonSerializerOptions?)null) ?? new List<Guid>());
+        modelBuilder.Entity<ProgramModel>()
+            .HasOne(p => p.Institute)
+            .WithMany(i => i.Programs)
+            .HasForeignKey(p => p.InstituteId)
+            .OnDelete(DeleteBehavior.Cascade);
 
-        // 2) Компаратор списков
-        var listComparer = new ValueComparer<List<Guid>>(
-            (c1, c2) => c1.SequenceEqual(c2),
-            c => c.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())),
-            c => c.ToList()
-        );
+        modelBuilder.Entity<ProgramModel>()
+            .HasOne(p => p.Head)
+            .WithMany(h => h.Programs)
+            .HasForeignKey(p => p.HeadId)
+            .OnDelete(DeleteBehavior.Restrict);
 
-        // 3) Настраиваем поле Programs в Institute
-        var instProp = modelBuilder.Entity<Institute>()
-            .Property(i => i.Programs);
-
-        instProp.HasConversion(jsonConverter);
-        instProp.HasColumnType("jsonb");
-
-        // поскольку HasValueComparer недоступен, делаем так:
-        instProp.Metadata.SetValueComparer(listComparer);
-
-        // 4) То же для ModuleIds в ProgramModel
-        var progProp = modelBuilder.Entity<ProgramModel>()
-            .Property(p => p.ModuleIds);
-
-        progProp.HasConversion(jsonConverter);
-        progProp.HasColumnType("jsonb");
-        progProp.Metadata.SetValueComparer(listComparer);
+        modelBuilder.Entity<ModuleModel>()
+            .HasOne(m => m.Program)
+            .WithMany(p => p.Modules)
+            .HasForeignKey(m => m.ProgramId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

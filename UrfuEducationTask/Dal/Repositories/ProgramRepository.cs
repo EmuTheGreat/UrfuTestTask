@@ -30,7 +30,7 @@ public class ProgramRepository : IProgramRepository
         return Task.CompletedTask;
     }
 
-    public async Task<List<ModuleModel>> GetModulesByProgramIdAsync(Guid programId)
+    /*public async Task<List<ModuleModel>> GetModulesByProgramIdAsync(Guid programId)
     {
         var prog = await _db.Programs.FindAsync(programId);
         if (prog == null) return new List<ModuleModel>();
@@ -39,9 +39,9 @@ public class ProgramRepository : IProgramRepository
             .Where(m => prog.ModuleIds.Contains(m.Uuid))
             .AsNoTracking()
             .ToListAsync();
-    }
+    }*/
 
-    public async Task AddModuleAsync(Guid programId, Guid moduleId)
+    /*public async Task AddModuleAsync(Guid programId, Guid moduleId)
     {
         var prog = await _db.Programs.FindAsync(programId);
         if (prog == null) throw new InvalidOperationException("Program not found");
@@ -54,7 +54,7 @@ public class ProgramRepository : IProgramRepository
         var prog = await _db.Programs.FindAsync(programId);
         if (prog == null) throw new InvalidOperationException("Program not found");
         prog.ModuleIds.RemoveAll(id => id == moduleId);
-    }
+    }*/
 
     public Task SaveChangesAsync() => _db.SaveChangesAsync();
 }

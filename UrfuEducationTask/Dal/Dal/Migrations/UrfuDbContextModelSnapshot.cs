@@ -44,10 +44,6 @@ namespace Dal.Dal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Programs")
-                        .IsRequired()
-                        .HasColumnType("jsonb");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -64,6 +60,9 @@ namespace Dal.Dal.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("ProgramId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -73,6 +72,8 @@ namespace Dal.Dal.Migrations
                         .HasColumnType("integer");
 
                     b.HasKey("Uuid");
+
+                    b.HasIndex("ProgramId");
 
                     b.ToTable("Modules");
                 });
@@ -100,10 +101,6 @@ namespace Dal.Dal.Migrations
                     b.Property<int>("Level")
                         .HasColumnType("integer");
 
-                    b.Property<string>("ModuleIds")
-                        .IsRequired()
-                        .HasColumnType("jsonb");
-
                     b.Property<int>("Standard")
                         .HasColumnType("integer");
 
@@ -120,6 +117,8 @@ namespace Dal.Dal.Migrations
                     b.HasKey("Uuid");
 
                     b.HasIndex("HeadId");
+
+                    b.HasIndex("InstituteId");
 
                     b.ToTable("Programs");
                 });
@@ -143,18 +142,49 @@ namespace Dal.Dal.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Dal.Models.ProgramModel", b =>
+            modelBuilder.Entity("Dal.Models.ModuleModel", b =>
                 {
-                    b.HasOne("Dal.Models.Head", null)
-                        .WithMany("Programs")
-                        .HasForeignKey("HeadId")
+                    b.HasOne("Dal.Models.ProgramModel", "Program")
+                        .WithMany("Modules")
+                        .HasForeignKey("ProgramId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Program");
+                });
+
+            modelBuilder.Entity("Dal.Models.ProgramModel", b =>
+                {
+                    b.HasOne("Dal.Models.Head", "Head")
+                        .WithMany("Programs")
+                        .HasForeignKey("HeadId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Dal.Models.Institute", "Institute")
+                        .WithMany("Programs")
+                        .HasForeignKey("InstituteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Head");
+
+                    b.Navigation("Institute");
                 });
 
             modelBuilder.Entity("Dal.Models.Head", b =>
                 {
                     b.Navigation("Programs");
+                });
+
+            modelBuilder.Entity("Dal.Models.Institute", b =>
+                {
+                    b.Navigation("Programs");
+                });
+
+            modelBuilder.Entity("Dal.Models.ProgramModel", b =>
+                {
+                    b.Navigation("Modules");
                 });
 #pragma warning restore 612, 618
         }

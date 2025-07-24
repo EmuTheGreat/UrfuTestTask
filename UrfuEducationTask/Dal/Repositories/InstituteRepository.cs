@@ -17,5 +17,14 @@ namespace Dal.Repositories
 
         public Task<Institute?> GetByIdAsync(Guid uuid) =>
             _db.Institutes.FindAsync(uuid).AsTask();
+
+        public async Task AddAsync(Institute institute)
+        {
+            await _db.Institutes.AddAsync(institute);
+        }
+
+        public Task SaveChangesAsync() =>
+            _db.SaveChangesAsync();
     }
+
 }

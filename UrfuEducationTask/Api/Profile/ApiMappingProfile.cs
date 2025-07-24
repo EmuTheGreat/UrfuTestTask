@@ -11,7 +11,6 @@ namespace Api.Mappings
     {
         public ApiMappingProfile()
         {
-            // Request → LogicModel
             CreateMap<RegisterRequest, UserLogicModel>();
             CreateMap<LoginRequest, UserLogicModel>();
             CreateMap<UserLogicModel, UserModel>();
@@ -24,8 +23,7 @@ namespace Api.Mappings
             
             CreateMap<ProgramLogicModel, ProgramResponse>();
             
-            
-            
+            CreateMap<ProgramModel, ProgramLogicModel>();
         }
     }
 }

@@ -1,11 +1,14 @@
 ﻿using Api.Controllers.InstituteController.Dto.Request;
 using Dal.Models;
 using Dal.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Api.Controllers.InstituteController;
 
 using Microsoft.AspNetCore.Mvc;
 
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 [ApiController]
 [Route("api/institutes")]
 public class InstitutesController : ControllerBase

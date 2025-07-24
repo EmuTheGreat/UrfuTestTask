@@ -3,10 +3,13 @@ using Api.Controllers.ProgramsController.Dto.Response;
 using AutoMapper;
 using Logic.Managers.Interfaces;
 using Logic.Model.Command;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers.ProgramsController;
 
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 [ApiController]
 [Route("api/[controller]")]
 public class ProgramsController : ControllerBase

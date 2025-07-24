@@ -2,10 +2,13 @@
 using Api.Controllers.ModuleController.Dto.Request;
 using Dal.Models;
 using Dal.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers.ModuleController;
 
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 [ApiController]
 [Route("api/modules")]
 public class ModulesController : ControllerBase

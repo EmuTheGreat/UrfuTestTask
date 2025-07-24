@@ -1,8 +1,11 @@
 ﻿using Api.Controllers.HeadsController.Dto.Request;
 using Dal.Models;
 using Dal.Repositories.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
+[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
 [ApiController]
 [Route("api/heads")]
 public class HeadsController : ControllerBase

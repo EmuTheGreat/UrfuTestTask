@@ -4,10 +4,8 @@
 
 namespace Dal.Dal.Migrations
 {
-    /// <inheritdoc />
     public partial class EnumAsString : Migration
     {
-        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<string>(
@@ -34,8 +32,7 @@ namespace Dal.Dal.Migrations
                 oldClrType: typeof(int),
                 oldType: "integer");
         }
-
-        /// <inheritdoc />
+        
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterColumn<int>(
